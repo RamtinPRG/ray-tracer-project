@@ -89,7 +89,7 @@ double tuple_vec_len(Vector *vector)
 Vector tuple_vec_nor(Vector *vector)
 {
     double len = tuple_vec_len(vector);
-    return tuple_div_scalar(vector, len);
+    return tuple_div_scal(vector, len);
 }
 
 double tuple_vec_dot(Vector *a, Vector *b)
