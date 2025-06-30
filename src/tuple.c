@@ -1,8 +1,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
-#include <inttypes.h>
+#include <stdint.h>
 #include <math.h>
-#include <stdio.h>
 #include "tuple.h"
 
 struct Tuple
@@ -56,25 +55,25 @@ Tuple tuple_add(Tuple *a, Tuple *b)
 }
 
 // Subtracts tuple b from tuple a
-Tuple tuple_subtract(Tuple *a, Tuple *b)
+Tuple tuple_sub(Tuple *a, Tuple *b)
 {
     return tuple_create(a->x - b->x, a->y - b->y, a->z - b->z, a->w - b->w);
 }
 
 // Negates a tuple
-Tuple tuple_negate(Tuple *tuple)
+Tuple tuple_neg(Tuple *tuple)
 {
     return tuple_create(-tuple->x, -tuple->y, -tuple->z, -tuple->w);
 }
 
 // Multiplies a tuple by a scalar factor
-Tuple tuple_mul_scalar(Tuple *tuple, double factor)
+Tuple tuple_mul_scal(Tuple *tuple, double factor)
 {
     return tuple_create(tuple->x * factor, tuple->y * factor, tuple->z * factor, tuple->w * factor);
 }
 
 // Divides a tuple by a scalar factor
-Tuple tuple_div_scalar(Tuple *tuple, double factor)
+Tuple tuple_div_scal(Tuple *tuple, double factor)
 {
     return tuple_create(tuple->x / factor, tuple->y / factor, tuple->z / factor, tuple->w / factor);
 }
@@ -87,7 +86,7 @@ double tuple_vec_len(Vector *vector)
                 vector->w * vector->w);
 }
 
-Vector tuple_vec_normalize(Vector *vector)
+Vector tuple_vec_nor(Vector *vector)
 {
     double len = tuple_vec_len(vector);
     return tuple_div_scalar(vector, len);
@@ -104,12 +103,3 @@ Vector tuple_vec_cross(Vector *a, Vector *b)
                                a->z * b->x - a->x * b->z,
                                a->x * b->y - a->y * b->x);
 }
-
-// int main()
-// {
-//     Vector a = tuple_create_vector(1, 2, 3);
-//     Vector b = tuple_vec_normalize(&a);
-//     printf("%lf, %lf, %lf", b.x, b.y, b.z);
-
-//     return 0;
-// }
