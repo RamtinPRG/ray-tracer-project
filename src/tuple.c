@@ -11,14 +11,12 @@ static bool float_equal(double a, double b, double epsilon)
 
 tuple_t tuple_create(double x, double y, double z, uint8_t w)
 {
-    tuple_t new_tuple = {
+    return (tuple_t){
         .x = x,
         .y = y,
         .z = z,
         .w = w,
     };
-
-    return new_tuple;
 }
 
 vector_t tuple_create_vector(double x, double y, double z)
