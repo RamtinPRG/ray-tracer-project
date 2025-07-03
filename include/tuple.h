@@ -14,6 +14,7 @@ typedef tuple_t point_t;
 tuple_t tuple_create(double x, double y, double z, uint8_t w);
 vector_t tuple_create_vector(double x, double y, double z);
 point_t tuple_create_point(double x, double y, double z);
+void tuple_print(tuple_t *a);
 bool tuple_equal(tuple_t *a, tuple_t *b, double epsilon);
 tuple_t tuple_add(tuple_t *a, tuple_t *b);
 tuple_t tuple_sub(tuple_t *a, tuple_t *b);

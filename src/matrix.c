@@ -3,8 +3,8 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <stdbool.h>
-#include "matrix.h"
 #include "tuple.h"
+#include "matrix.h"
 
 struct matrix_t
 {
@@ -122,22 +122,24 @@ tuple_t matrix_mul_tup(const matrix_t *m, tuple_t t)
     result.x += matrix_get(m, 0, 3) * t.w;
 
     // value of y
-    result.y += matrix_get(m, 0, 0) * t.x;
-    result.y += matrix_get(m, 0, 1) * t.y;
-    result.y += matrix_get(m, 0, 2) * t.z;
-    result.y += matrix_get(m, 0, 3) * t.w;
+    result.y += matrix_get(m, 1, 0) * t.x;
+    result.y += matrix_get(m, 1, 1) * t.y;
+    result.y += matrix_get(m, 1, 2) * t.z;
+    result.y += matrix_get(m, 1, 3) * t.w;
 
     // value of z
-    result.z += matrix_get(m, 0, 0) * t.x;
-    result.z += matrix_get(m, 0, 1) * t.y;
-    result.z += matrix_get(m, 0, 2) * t.z;
-    result.z += matrix_get(m, 0, 3) * t.w;
+    result.z += matrix_get(m, 2, 0) * t.x;
+    result.z += matrix_get(m, 2, 1) * t.y;
+    result.z += matrix_get(m, 2, 2) * t.z;
+    result.z += matrix_get(m, 2, 3) * t.w;
 
     // value of w
-    result.w += matrix_get(m, 0, 0) * t.x;
-    result.w += matrix_get(m, 0, 1) * t.y;
-    result.w += matrix_get(m, 0, 2) * t.z;
-    result.w += matrix_get(m, 0, 3) * t.w;
+    result.w += matrix_get(m, 3, 0) * t.x;
+    result.w += matrix_get(m, 3, 1) * t.y;
+    result.w += matrix_get(m, 3, 2) * t.z;
+    result.w += matrix_get(m, 3, 3) * t.w;
+
+    return result;
 }
 
 matrix_t *matrix_transpose(const matrix_t *m)

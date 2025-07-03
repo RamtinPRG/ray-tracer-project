@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <math.h>
 #include "tuple.h"
 
@@ -27,6 +28,11 @@ vector_t tuple_create_vector(double x, double y, double z)
 point_t tuple_create_point(double x, double y, double z)
 {
     return tuple_create(x, y, z, 1);
+}
+
+void tuple_print(tuple_t *a)
+{
+    printf("%10.5f, %10.5f, %10.5f, %d\n", a->x, a->y, a->z, a->w);
 }
 
 // Checks the equality of 2 tuples
