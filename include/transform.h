@@ -1,6 +1,7 @@
 #ifndef TRANSFORM_H_
 #define TRANSFORM_H_
 
+matrix_t *transform_identity_matrix();
 matrix_t *transform_translation_matrix(double x, double y, double z);
 matrix_t *transform_scaling_matrix(double x, double y, double z);
 matrix_t *transform_rotation_x_matrix(double angle);

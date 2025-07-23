@@ -1,6 +1,8 @@
 #ifndef TUPLE_H_
 #define TUPLE_H_
 
+#include <stdint.h>
+
 typedef struct
 {
     double x;
@@ -22,6 +24,7 @@ tuple_t tuple_neg(tuple_t *tuple);
 tuple_t tuple_mul_scal(tuple_t *tuple, double factor);
 tuple_t tuple_div_scal(tuple_t *tuple, double factor);
 double tuple_vec_len(vector_t *vector);
+vector_t tuple_vec_nor(vector_t *vector);
 double tuple_vec_dot(vector_t *a, vector_t *b);
 vector_t tuple_vec_cross(vector_t *a, vector_t *b);
 

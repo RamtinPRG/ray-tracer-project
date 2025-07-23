@@ -1,6 +1,9 @@
 #ifndef MATRIX_H_
 #define MATRIX_H_
 
+#include <stdint.h>
+#include "tuple.h"
+
 #define MATRIX_SET_VALUES(mtx, ...)         \
     do                                      \
     {                                       \

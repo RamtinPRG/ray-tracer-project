@@ -4,6 +4,17 @@
 #include "matrix.h"
 #include "transform.h"
 
+matrix_t *transform_identity_matrix()
+{
+    matrix_t *result = matrix_create(4);
+    MATRIX_SET_VALUES(result,
+                      1, 0, 0, 0,
+                      0, 1, 0, 0,
+                      0, 0, 1, 0,
+                      0, 0, 0, 1);
+    return result;
+}
+
 matrix_t *transform_translation_matrix(double x, double y, double z)
 {
     matrix_t *result = matrix_create(4);
