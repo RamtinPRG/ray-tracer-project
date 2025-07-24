@@ -55,7 +55,7 @@ int main()
     material->color = color_create(1, 0.2, 1);
 
     // light source
-    point_t light_position = tuple_create_point(-10, 0, 4);
+    point_t light_position = tuple_create_point(-10, 10, -10);
     color_t light_color = color_create(1, 1, 1);
     point_light_t light = light_create(light_position, light_color);
 
