@@ -99,3 +99,9 @@ vector_t tuple_vec_cross(vector_t *a, vector_t *b)
                                a->z * b->x - a->x * b->z,
                                a->x * b->y - a->y * b->x);
 }
+
+vector_t tuple_vec_reflect(vector_t *in, vector_t *nor)
+{
+    vector_t vec_proj = tuple_mul_scal(nor, 2 * tuple_vec_dot(in, nor));
+    return tuple_sub(in, &vec_proj);
+}

@@ -109,9 +109,9 @@ void canvas_color_to_color24(const color_t *from, color24_t *to, size_t nitem)
 {
     for (int i = 0; i < nitem; i++)
     {
-        to->r = from->r * 255;
-        to->g = from->g * 255;
-        to->b = from->b * 255;
+        to->r = (from->r > 1 ? 1 : from->r) * 255;
+        to->g = (from->g > 1 ? 1 : from->g) * 255;
+        to->b = (from->b > 1 ? 1 : from->b) * 255;
         from++;
         to++;
     }

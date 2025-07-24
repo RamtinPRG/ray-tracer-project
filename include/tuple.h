@@ -27,5 +27,6 @@ double tuple_vec_len(vector_t *vector);
 vector_t tuple_vec_nor(vector_t *vector);
 double tuple_vec_dot(vector_t *a, vector_t *b);
 vector_t tuple_vec_cross(vector_t *a, vector_t *b);
+vector_t tuple_vec_reflect(vector_t *in, vector_t *nor);
 
 #endif
