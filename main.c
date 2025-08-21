@@ -15,7 +15,7 @@ int main()
 {
     ///////// Canvas setup ///////////
     int canvas_width = 320;
-    int canvas_height = 240;
+    int canvas_height = 480;
 
     canvas_handle_t canvas_handle;
     canvas_config_t canvas_cfg = {

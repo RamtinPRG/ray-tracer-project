@@ -21,6 +21,7 @@ void matrix_set_values(matrix_t *m, ...);
 void matrix_set_from_array(const matrix_t *m, const double *values);
 void matrix_print(const matrix_t *m);
 matrix_t *matrix_mul(const matrix_t *m1, const matrix_t *m2);
+matrix_t *matrix_mul_multiple(int count, ...);
 tuple_t matrix_mul_tup(const matrix_t *m, tuple_t t);
 matrix_t *matrix_transpose(const matrix_t *m);
 double matrix_det(const matrix_t *m);

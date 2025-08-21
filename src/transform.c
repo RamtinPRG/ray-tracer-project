@@ -88,6 +88,28 @@ matrix_t *transform_shearing_matrix(double xy, double xz, double yx, double yz, 
     return result;
 }
 
+matrix_t *transform_view(point_t from, point_t to, vector_t up)
+{
+    vector_t forward = tuple_sub(&to, &from);
+    forward = tuple_vec_nor(&forward);
+    vector_t up_norm = tuple_vec_nor(&up);
+    vector_t left = tuple_vec_cross(&forward, &up_norm);
+    vector_t true_up = tuple_vec_cross(&left, &forward);
+
+    matrix_t *orientation = matrix_create(4);
+    MATRIX_SET_VALUES(orientation,
+                      left.x, left.y, left.z, 0,
+                      true_up.x, true_up.y, true_up.z, 0,
+                      -forward.x, -forward.y, -forward.z, 0,
+                      0, 0, 0, 1);
+    matrix_t *translation = transform_translation_matrix(-from.x, -from.y, -from.z);
+    matrix_t *result = matrix_mul(orientation, translation);
+
+    matrix_del(orientation);
+    matrix_del(translation);
+
+    return result;
+}
 // int main()
 // {
 

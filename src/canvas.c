@@ -75,6 +75,11 @@ color_t color_mul(color_t *c1, color_t *c2)
     return color_create(c1->r * c2->r, c1->g * c2->g, c1->b * c2->b);
 }
 
+void color_print(color_t *c)
+{
+    printf("%10.5f, %10.5f, %10.5f\n", c->r, c->g, c->b);
+}
+
 void canvas_create(canvas_config_t *canvas_config, canvas_handle_t *canvas_handle)
 {
     canvas_t *canvas = calloc(1, sizeof(canvas_t));
@@ -97,6 +102,15 @@ void canvas_write_pixel(canvas_handle_t canvas_handle, uint16_t x, uint16_t y, c
     if (y < 0 || y >= height)
         return;
     frame[y * width + x] = *color;
+}
+
+color_t canvas_pixel_at(canvas_handle_t canvas_handle, uint16_t x, uint16_t y)
+{
+    if (x < 0 || x >= canvas_handle->width)
+        return (color_t){-1, -1, -1};
+    if (y < 0 || y >= canvas_handle->height)
+        return (color_t){-1, -1, -1};
+    return canvas_handle->frame[y * canvas_handle->width + x];
 }
 
 void canvas_del(canvas_handle_t canvas_handle)

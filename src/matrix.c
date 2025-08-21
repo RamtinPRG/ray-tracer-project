@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include "tuple.h"
 #include "matrix.h"
+#include "transform.h"
 
 struct matrix_t
 {
@@ -101,6 +102,34 @@ matrix_t *matrix_mul(const matrix_t *m1, const matrix_t *m2)
                 val += matrix_get(m1, row, i) * matrix_get(m2, i, col);
             matrix_set(result, row, col, val);
         }
+    }
+
+    return result;
+}
+
+matrix_t *matrix_mul_multiple(int count, ...)
+{
+    if (count < 1)
+        return NULL;
+
+    va_list args;
+    va_start(args, count);
+
+    matrix_t *matrices[count];
+    for (int i = 0; i < count; i++)
+        matrices[i] = va_arg(args, matrix_t *);
+
+    va_end(args);
+
+    matrix_t *result = matrix_create(matrices[0]->size);
+    matrix_set_from_array(result, matrices[0]->data);
+    for (int i = 1; i < count; i++)
+    {
+        if (matrices[i]->size != result->size)
+            return NULL;
+        matrix_t *temp = matrix_mul(result, matrices[i]);
+        matrix_del(result);
+        result = temp;
     }
 
     return result;

@@ -35,6 +35,11 @@ void sphere_del(sphere_t *s)
     }
 }
 
+size_t sphere_size()
+{
+    return sizeof(sphere_t);
+}
+
 void sphere_set_transform(sphere_t *s, matrix_t *m)
 {
     for (int i = 0; i < 4; i++)
@@ -44,6 +49,11 @@ void sphere_set_transform(sphere_t *s, matrix_t *m)
             matrix_set(s->transform, i, j, matrix_get(m, i, j));
         }
     }
+}
+
+matrix_t *sphere_get_transform(sphere_t *s)
+{
+    return s->transform;
 }
 
 material_t *sphere_get_material(sphere_t *s)
