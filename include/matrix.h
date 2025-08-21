@@ -2,6 +2,7 @@
 #define MATRIX_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "tuple.h"
 
 #define MATRIX_SET_VALUES(mtx, ...)         \

@@ -2,6 +2,7 @@
 #define TUPLE_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef struct
 {

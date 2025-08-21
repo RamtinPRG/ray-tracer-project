@@ -1,6 +1,7 @@
 #ifndef SPHERE_H_
 #define SPHERE_H_
 
+#include <stddef.h>
 #include "ray.h"
 #include "matrix.h"
 #include "intersection.h"
