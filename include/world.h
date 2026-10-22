@@ -1,6 +1,7 @@
 #ifndef WORLD_H_
 #define WORLD_H_
 
+#include <stdbool.h>
 #include "light.h"
 #include "sphere.h"
 
@@ -25,6 +26,8 @@ void world_del(world_t *world);
 void world_add_light_source(world_t *world, point_light_t *light_source);
 void world_add_object(world_t *world, sphere_t *object);
 intersection_list_t *world_ray_intersect(world_t *world, ray_t r);
+/* Test visibility of one light; use an offset surface point for shadow rays. */
+bool world_is_shadowed(world_t *world, point_t point, point_light_t *light);
 color_t world_shade_hit(world_t *world, intersection_precomp_t *comps);
 color_t world_color_at(world_t *world, ray_t r);
 

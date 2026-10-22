@@ -12,6 +12,10 @@
 #include "transform.h"
 #include "material.h"
 
+#ifndef RAYTRACER_OUTPUT_FILE
+#define RAYTRACER_OUTPUT_FILE "./chapter7.bmp"
+#endif
+
 int main()
 {
     matrix_t *transform, *scaling, *translation, *rotation_y, *rotation_x;
@@ -122,7 +126,8 @@ int main()
     printf("\n******** Rendering finished ********\n\n");
     printf("Render time: %.5f seconds\n", (double)(end_time - start_time) / CLOCKS_PER_SEC);
 
-    canvas_export_bmp(canvas_handle, "./chapter7.bmp");
+    canvas_export_bmp(canvas_handle, RAYTRACER_OUTPUT_FILE);
+    printf("Image: %s\n", RAYTRACER_OUTPUT_FILE);
 
     sphere_del(floor);
     sphere_del(left_wall);

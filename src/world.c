@@ -63,12 +63,34 @@ intersection_list_t *world_ray_intersect(world_t *world, ray_t r)
     return intersections;
 }
 
+bool world_is_shadowed(world_t *world, point_t point, point_light_t *light)
+{
+    vector_t to_light = tuple_sub(&light->position, &point);
+    double distance = tuple_vec_len(&to_light);
+    if (distance == 0)
+        return false;
+
+    vector_t direction = tuple_div_scal(&to_light, distance);
+    ray_t shadow_ray = ray_create(point, direction);
+    intersection_list_t *xs = world_ray_intersect(world, shadow_ray);
+    if (!xs)
+        return false;
+
+    intersection_t *hit = intersection_hit(xs);
+    bool shadowed = hit && hit->t < distance;
+    intersection_list_del(xs);
+    return shadowed;
+}
+
 color_t world_shade_hit(world_t *world, intersection_precomp_t *comps)
 {
     color_t result = color_create(0, 0, 0);
     for (int i = 0; i < world->light_source_count; i++)
     {
-        color_t color = light_lighting(sphere_get_material((sphere_t *)comps->object), world->light_source[i], comps->point, comps->eyev, comps->normalv);
+        point_light_t *light = world->light_source[i];
+        bool in_shadow = world_is_shadowed(world, comps->over_point, light);
+        color_t color = light_lighting(sphere_get_material((sphere_t *)comps->object), light,
+                                       comps->over_point, comps->eyev, comps->normalv, in_shadow);
         result = color_add(&result, &color);
     }
     return result;

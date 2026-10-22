@@ -191,30 +191,30 @@ vector_t sphere_normal_at(sphere_t *s, point_t p)
 //     eyev = tuple_create_vector(0, 0, -1);
 //     normalv = tuple_create_vector(0, 0, -1);
 //     light = light_create(tuple_create_point(0, 0, -10), color_create(1, 1, 1));
-//     result = light_lighting(&m, &light, position, eyev, normalv);
+//     result = light_lighting(&m, &light, position, eyev, normalv, false);
 //     printf("%10.5f, %10.5f, %10.5f\n", result.r, result.g, result.b);
 
 //     eyev = tuple_create_vector(0, M_SQRT1_2, -M_SQRT1_2);
 //     normalv = tuple_create_vector(0, 0, -1);
 //     light = light_create(tuple_create_point(0, 0, -10), color_create(1, 1, 1));
-//     result = light_lighting(&m, &light, position, eyev, normalv);
+//     result = light_lighting(&m, &light, position, eyev, normalv, false);
 //     printf("%10.5f, %10.5f, %10.5f\n", result.r, result.g, result.b);
 
 //     eyev = tuple_create_vector(0, 0, -1);
 //     normalv = tuple_create_vector(0, 0, -1);
 //     light = light_create(tuple_create_point(0, 10, -10), color_create(1, 1, 1));
-//     result = light_lighting(&m, &light, position, eyev, normalv);
+//     result = light_lighting(&m, &light, position, eyev, normalv, false);
 //     printf("%10.5f, %10.5f, %10.5f\n", result.r, result.g, result.b);
 
 //     eyev = tuple_create_vector(0, -M_SQRT1_2, -M_SQRT1_2);
 //     normalv = tuple_create_vector(0, 0, -1);
 //     light = light_create(tuple_create_point(0, 10, -10), color_create(1, 1, 1));
-//     result = light_lighting(&m, &light, position, eyev, normalv);
+//     result = light_lighting(&m, &light, position, eyev, normalv, false);
 //     printf("%10.5f, %10.5f, %10.5f\n", result.r, result.g, result.b);
 
 //     eyev = tuple_create_vector(0, 0, -1);
 //     normalv = tuple_create_vector(0, 0, -1);
 //     light = light_create(tuple_create_point(0, 0, 10), color_create(1, 1, 1));
-//     result = light_lighting(&m, &light, position, eyev, normalv);
+//     result = light_lighting(&m, &light, position, eyev, normalv, false);
 //     printf("%10.5f, %10.5f, %10.5f\n", result.r, result.g, result.b);
 // }

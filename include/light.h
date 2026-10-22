@@ -1,10 +1,10 @@
 #ifndef LIGHT_H_
 #define LIGHT_H_
 
+#include <stdbool.h>
 #include "canvas.h"
 #include "tuple.h"
 #include "material.h"
-#include "light.h"
 
 typedef struct point_light_t
 {
@@ -13,6 +13,7 @@ typedef struct point_light_t
 } point_light_t;
 
 point_light_t light_create(point_t position, color_t intensity);
-color_t light_lighting(material_t *material, point_light_t *light, point_t point, vector_t eye_vec, vector_t normal_vec);
+/* In shadow, this light contributes ambient illumination only. */
+color_t light_lighting(material_t *material, point_light_t *light, point_t point, vector_t eye_vec, vector_t normal_vec, bool in_shadow);
 
 #endif

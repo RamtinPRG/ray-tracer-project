@@ -147,5 +147,9 @@ intersection_precomp_t intersection_prepare_computations(intersection_t *i, ray_
         comp.inside = true;
         comp.normalv = tuple_neg(&comp.normalv);
     }
+
+    /* Use the final normal, including its reversal for an inside hit. */
+    vector_t offset = tuple_mul_scal(&comp.normalv, INTERSECTION_EPSILON);
+    comp.over_point = tuple_add(&comp.point, &offset);
     return comp;
 }

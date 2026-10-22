@@ -82,7 +82,7 @@ int main()
                 vector_t normal = sphere_normal_at((sphere_t *)(hit->object), point);
                 vector_t eye = tuple_neg(&ray.direction);
 
-                color_t color = light_lighting(sphere_get_material(hit->object), &light, point, eye, normal);
+                color_t color = light_lighting(sphere_get_material(hit->object), &light, point, eye, normal, false);
                 canvas_write_pixel(canvas_handle, i, j, &color);
             }
 

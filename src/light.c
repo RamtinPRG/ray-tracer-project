@@ -12,18 +12,21 @@ inline point_light_t light_create(point_t position, color_t intensity)
     };
 }
 
-color_t light_lighting(material_t *material, point_light_t *light, point_t point, vector_t eye_vec, vector_t normal_vec)
+color_t light_lighting(material_t *material, point_light_t *light, point_t point, vector_t eye_vec, vector_t normal_vec, bool in_shadow)
 {
     color_t ambient = color_create(0, 0, 0);
     color_t diffuse = color_create(0, 0, 0);
     color_t specular = color_create(0, 0, 0);
 
     color_t effective_color = color_mul(&material->color, &light->intensity);
+    ambient = color_mul_scal(&effective_color, material->ambient);
+    if (in_shadow)
+        return ambient;
+
     vector_t light_vec = tuple_sub(&light->position, &point);
     light_vec = tuple_vec_nor(&light_vec);
     double light_dot_nor = tuple_vec_dot(&light_vec, &normal_vec);
 
-    ambient = color_mul_scal(&effective_color, material->ambient);
     if (light_dot_nor >= 0)
     {
         diffuse = color_mul_scal(&effective_color, material->diffuse * light_dot_nor);

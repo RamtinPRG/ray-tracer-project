@@ -6,6 +6,9 @@
 #include "tuple.h"
 #include "ray.h"
 
+/* Offset in world units used to keep secondary rays above the surface. */
+#define INTERSECTION_EPSILON 0.00001
+
 typedef struct intersection_t
 {
     double t;
@@ -23,6 +26,7 @@ typedef struct intersection_precomp_t
     double t;
     void *object;
     point_t point;
+    point_t over_point;
     vector_t eyev;
     vector_t normalv;
     bool inside;
