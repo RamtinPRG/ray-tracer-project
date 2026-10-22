@@ -1,4 +1,5 @@
 #define _USE_MATH_DEFINES
+#define _GNU_SOURCE
 
 #include <math.h>
 #include <stdio.h>
@@ -95,7 +96,7 @@ int main()
 
     world_config_t world_config = {
         .light_source_count = 2,
-        .objects_count = 3,
+        .objects_count = 6,
     };
     world_t *world = world_create(&world_config);
     world_add_light_source(world, &light_source_1);

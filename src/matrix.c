@@ -126,7 +126,10 @@ matrix_t *matrix_mul_multiple(int count, ...)
     for (int i = 1; i < count; i++)
     {
         if (matrices[i]->size != result->size)
+        {
+            matrix_del(result);
             return NULL;
+        }
         matrix_t *temp = matrix_mul(result, matrices[i]);
         matrix_del(result);
         result = temp;

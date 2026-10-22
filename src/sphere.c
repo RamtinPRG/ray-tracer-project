@@ -29,8 +29,7 @@ void sphere_del(sphere_t *s)
 {
     if (s)
     {
-        if (s->transform)
-            free(s->transform);
+        matrix_del(s->transform);
         free(s);
     }
 }

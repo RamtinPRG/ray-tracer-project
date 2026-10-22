@@ -50,7 +50,11 @@ intersection_list_t *world_ray_intersect(world_t *world, ray_t r)
         intersection_list_t *object_intersections = sphere_ray_intersect(world->objects[i], r);
         intersection_list_t *updated_intersections = intersection_list_join_inplace(intersections, object_intersections);
         if (!updated_intersections)
+        {
+            intersection_list_del(object_intersections);
+            intersection_list_del(intersections);
             return NULL;
+        }
         intersections = updated_intersections;
         intersection_list_del(object_intersections);
     }
@@ -72,12 +76,20 @@ color_t world_shade_hit(world_t *world, intersection_precomp_t *comps)
 
 color_t world_color_at(world_t *world, ray_t r)
 {
-    intersection_list_t *intersection_list = world_ray_intersect(world, r);
-    intersection_t *i = intersection_hit(intersection_list);
-
-    if (!i)
+    intersection_list_t *xs = world_ray_intersect(world, r);
+    if (!xs)
         return (color_t){0, 0, 0};
 
-    intersection_precomp_t comps = intersection_prepare_computations(i, r);
-    return world_shade_hit(world, &comps);
+    color_t color = {0, 0, 0};
+    intersection_t *hit = intersection_hit(xs);
+
+    if (hit)
+    {
+        intersection_precomp_t comps =
+            intersection_prepare_computations(hit, r);
+        color = world_shade_hit(world, &comps);
+    }
+
+    intersection_list_del(xs);
+    return color;
 }

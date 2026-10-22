@@ -144,6 +144,12 @@ void canvas_export_bmp(canvas_handle_t canvas_handle, char *path)
     size_t image_data_size = stride_size * canvas_handle->height;
 
     uint8_t *color_data = malloc(pixels_count * sizeof(color24_t));
+    if (!color_data)
+    {
+        fclose(file);
+        return;
+    }
+
     canvas_color_to_color24(canvas_handle->frame, (color24_t *)color_data, pixels_count);
 
     BITMAPFILEHEADER file_header = {
@@ -181,6 +187,7 @@ void canvas_export_bmp(canvas_handle_t canvas_handle, char *path)
         fwrite(padding_bytes, padding_size, 1, file);
     }
 
+    free(color_data);
     fclose(file);
 }
 
